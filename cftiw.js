@@ -27,7 +27,7 @@ function display() {
   const hideIp = info.hasAttribute("data-hide-ip");
   const hideLoc = info.hasAttribute("data-hide-loc");
 
-  const icaoCode = navigator.language.includes("zh")
+  const iataCode = navigator.language.includes("zh")
     ? {
         AMS: "荷兰阿姆斯特丹",
         AMM: "约旦安曼",
@@ -700,10 +700,10 @@ function display() {
           const value = data[key];
           template = template.replace(new RegExp(`\\$\\{${key}\\}`, "g"), value || "");
         });
-        template = template.replace("${icao}", icaoCode[data.colo] || "");
+        template = template.replace("${icao}", iataCode[data.colo] || "");
       } else {
         template = `
-              ${`[${data.colo}]${icaoCode[data.colo]}`}
+              ${`[${data.colo}]${iataCode[data.colo]}`}
               ${!hideIp ? ` · ${data.ip}` : ""}
               ${!hideLoc ? ` · ${data.loc} ` : ""}
             `;
