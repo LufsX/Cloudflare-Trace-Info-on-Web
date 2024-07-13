@@ -1,5 +1,5 @@
 function fetchCloudflareTraceData() {
-  return fetch("https://isteed.cc//cdn-cgi/trace")
+  return fetch("/cdn-cgi/trace")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failure to fetch Cloudflare trace data");
