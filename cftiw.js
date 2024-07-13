@@ -1,5 +1,5 @@
 function fetchCloudflareTraceData() {
-  return fetch("/cdn-cgi/trace")
+  return fetch("https://isteed.cc//cdn-cgi/trace")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failure to fetch Cloudflare trace data");
@@ -700,7 +700,7 @@ function display() {
           const value = data[key];
           template = template.replace(new RegExp(`\\$\\{${key}\\}`, "g"), value || "");
         });
-        template = template.replace("${icao}", iataCode[data.colo] || "");
+        template = template.replace("${iata}", iataCode[data.colo] || "");
       } else {
         template = `
               ${`[${data.colo}]${iataCode[data.colo]}`}
