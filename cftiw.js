@@ -1,31 +1,22 @@
-function fetchCloudflareTraceData() {
-  return fetch("/cdn-cgi/trace")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failure to fetch Cloudflare trace data");
-      }
-      return response.text();
-    })
-    .then((text) => {
-      const data = Object.fromEntries(
-        text
-          .trim()
-          .split("\n")
-          .map((line) => line.split("="))
-      );
-      return data;
-    })
-    .catch((error) => {
-      return {};
-    });
+async function fetchCloudflareTraceData() {
+  try {
+    const response = await fetch("/cdn-cgi/trace");
+    if (!response.ok) throw new Error("Failed to fetch Cloudflare trace data");
+    const text = await response.text();
+    return Object.fromEntries(
+      text
+        .trim()
+        .split("\n")
+        .map((line) => line.split("="))
+    );
+  } catch (error) {
+    console.error("Unexpected FFCTD error: ", error);
+  }
 }
 
-function display() {
-  const info = document.getElementById("cloudflare-trace-info");
-  if (!info) return;
-
-  const hideIp = info.hasAttribute("data-hide-ip");
-  const hideLoc = info.hasAttribute("data-hide-loc");
+async function display() {
+  const elements = document.querySelectorAll(".cloudflare-trace-info");
+  if (!elements.length) return;
 
   const iataCode = navigator.language.includes("zh")
     ? {
@@ -690,29 +681,31 @@ function display() {
         XIY: "Baoji, China",
       };
 
-  fetchCloudflareTraceData()
-    .then((data) => {
+  try {
+    const data = await fetchCloudflareTraceData();
+
+    for (const info of elements) {
+      const hideIp = info.hasAttribute("data-hide-ip");
+      const hideLoc = info.hasAttribute("data-hide-loc");
       let template = info.getAttribute("data-template");
 
       if (template) {
-        Object.keys(data).forEach((key) => {
-          const value = data[key];
+        Object.entries(data).forEach(([key, value]) => {
           template = template.replace(new RegExp(`\\$\\{${key}\\}`, "g"), value || "");
         });
-        template = template.replace("${iata}", iataCode[data.colo] || "");
       } else {
-        template = `
-              ${`[${data.colo}]${iataCode[data.colo]}`}
-              ${!hideIp ? ` · ${data.ip}` : ""}
-              ${!hideLoc ? ` · ${data.loc} ` : ""}
-            `;
+        template = `[${data.colo}]\${iata}${!hideIp ? ` · ${data.ip}` : ""}${!hideLoc ? ` · ${data.loc}` : ""}`;
+      }
+
+      if (template.includes("${iata}")) {
+        template = template.replace("${iata}", iataCode[data.colo] || "");
       }
 
       info.innerHTML = template.trim();
-    })
-    .catch((error) => {
-      info.innerHTML = "Unable to display info.";
-    });
+    }
+  } catch (error) {
+    console.error("Unexpected DISPLAY error: ", error);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", display);
