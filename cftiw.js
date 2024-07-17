@@ -684,7 +684,7 @@ async function display() {
   try {
     const data = await fetchCloudflareTraceData();
 
-    for (const info of elements) {
+    const iataPromises = Array.from(elements).map(async (info) => {
       const hideIp = info.hasAttribute("data-hide-ip");
       const hideLoc = info.hasAttribute("data-hide-loc");
       let template = info.getAttribute("data-template");
@@ -702,7 +702,9 @@ async function display() {
       }
 
       info.innerHTML = template.trim();
-    }
+    });
+
+    await Promise.all(iataPromises);
   } catch (error) {
     console.error("Unexpected DISPLAY error: ", error);
   }
