@@ -18,8 +18,23 @@ Insert the following content anywhere on the webpage
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.2/cftiw.min.js"></script>
-<div id="cloudflare-trace-info"></div>
+<div class="cloudflare-trace-info">加载完成前显示的文本 The text that is displayed before the load is complete</div>
 ```
+
+**C**loud**f**lare **T**race **I**nfo on **W**eb => `cftiw`
+
+---
+
+通过 API 获取 IATA 数据，可以减小加载的脚本体积 `17KB` => `1.2KB`
+
+To fetch IATA data via API, the script size has been reduced from `17KB` to `1.2KB`.
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.2/cftiwo.min.js"></script>
+<div class="cloudflare-trace-info">加载完成前显示的文本 The text that is displayed before the load is complete</div>
+```
+
+**C**loud**f**lare **T**race **I**nfo on **W**eb **O**nline Edition => `cftiwo`
 
 ### 效果预览 Preview
 
@@ -56,11 +71,11 @@ In other languages:
 
 ```html
 <!-- 隐藏 IP 信息 -->
-<div id="cloudflare-trace-info" data-hide-ip></div>
+<div class="cloudflare-trace-info" data-hide-ip></div>
 <!-- 隐藏位置信息 -->
-<div id="cloudflare-trace-info" data-hide-loc></div>
+<div class="cloudflare-trace-info" data-hide-loc></div>
 <!-- 自定义内容模版 -->
-<div id="cloudflare-trace-info" data-template="位置：${loc} · IP：${ip} · 数据中心：[${colo}]${iata} · TLS 版本：${tls} · 时间戳：${ts}"></div>
+<div class="cloudflare-trace-info" data-template="位置：${loc} · IP：${ip} · 数据中心：[${colo}]${iata} · TLS 版本：${tls} · 时间戳：${ts}"></div>
 ```
 
 对应效果如下
@@ -85,11 +100,11 @@ Parameters include `data-hide-ip`, `data-hide-loc`, and `data-template`:
 
 ```html
 <!-- Hide IP information -->
-<div id="cloudflare-trace-info" data-hide-ip></div>
+<div class="cloudflare-trace-info" data-hide-ip></div>
 <!-- Hide location information -->
-<div id="cloudflare-trace-info" data-hide-loc></div>
+<div class="cloudflare-trace-info" data-hide-loc></div>
 <!-- Custom content template -->
-<div id="cloudflare-trace-info" data-template="Location: ${loc} · IP: ${ip} · Data Center: [${colo}]${iata} · TLS Version: ${tls} · Timestamp: ${ts}"></div>
+<div class="cloudflare-trace-info" data-template="Location: ${loc} · IP: ${ip} · Data Center: [${colo}]${iata} · TLS Version: ${tls} · Timestamp: ${ts}"></div>
 ```
 
 Corresponding effects:
