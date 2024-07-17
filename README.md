@@ -17,7 +17,7 @@ Display default IATA three-letter codes corresponding to region and IP informati
 Insert the following content anywhere on the webpage
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web/cftiw.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.2/cftiw.min.js"></script>
 <div id="cloudflare-trace-info"></div>
 ```
 
