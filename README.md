@@ -17,7 +17,7 @@ Display default IATA three-letter codes corresponding to region and IP informati
 Insert the following content anywhere on the webpage
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.2/cftiw.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.5/cftiw.min.js"></script>
 <div class="cloudflare-trace-info">加载完成前显示的文本 The text that is displayed before the load is complete</div>
 ```
 
@@ -30,7 +30,7 @@ Insert the following content anywhere on the webpage
 To fetch IATA data via API, the script size has been reduced from `17KB` to `1.2KB`.
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.2/cftiwo.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/LufsX/Cloudflare-Trace-Info-on-Web@0.0.5/cftiwo.min.js"></script>
 <div class="cloudflare-trace-info">加载完成前显示的文本 The text that is displayed before the load is complete</div>
 ```
 

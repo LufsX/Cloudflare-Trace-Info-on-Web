@@ -1,6 +1,6 @@
 {
   "name": "cloudflare-trace-info-on-web",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "自定义的在 HTML 中插入 Cloudflare 的网关跟踪信息 Customize inserting Cloudflare's gateway tracking information into HTML",
   "main": "cftiwo.min.js",
   "repository": {
