@@ -16,11 +16,12 @@ async function fetchCloudflareTraceData() {
 
 async function fetchIATAData(colo, language) {
   try {
-    const response = await fetch(`https://iata.isteed.cc/${language}/${colo}`);
+    const response = await fetch(`https://iata.isteed.cc/${language}/${colo.substring(0, 3)}`);
     if (!response.ok) throw new Error("Failed to fetch IATA data");
     return response.text();
   } catch (error) {
     console.error("Unexpected FID error: ", error);
+    return navigator.language.includes("zh") ? "未知" : "Unknown";
   }
 }
 

@@ -717,7 +717,7 @@ async function display() {
       }
 
       if (template.includes("${iata}")) {
-        template = template.replace("${iata}", iataCode[data.colo] || "");
+        template = template.replace("${iata}", iataCode[data.colo.substring(0, 3)] || navigator.language.includes("zh") ? "未知" : "Unknown");
       }
 
       info.innerHTML = template.trim();
